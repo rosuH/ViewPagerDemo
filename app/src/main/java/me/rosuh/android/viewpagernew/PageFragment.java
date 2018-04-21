@@ -23,8 +23,13 @@ public class PageFragment extends Fragment {
             R.drawable.boy
 
     };
+    private String[] mStringList = {
+            "T1", "T2", "T3", "T4", "T5"
+    };
+
     private CardView mCardView;
     private ImageView mImageView;
+    private TextView mTextView;
 
     public static Fragment newInstance(int index){
         Bundle args = new Bundle();
@@ -39,11 +44,13 @@ public class PageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.view_pager_fragment, container, false);
         mImageView = view.findViewById(R.id.image_view_fragment);
-        mCardView = view.findViewById(R.id.card_view);
-
+        mTextView = view.findViewById(R.id.title_inside);
+        mCardView = view.findViewById(R.id.card_view_inside);
+        mCardView.setElevation(0);
         int index = getArguments().getInt(ARGS_IMAGE);
 
         Glide.with(this).load(mImages[index]).into(mImageView);
+        mTextView.setText(mStringList[index]);
 
         return view;
     }
